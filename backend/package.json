@@ -2,6 +2,7 @@
   "name": "code-executer",
   "version": "1.0.0",
   "description": "Remote Code Execution App",
+  "private": true,
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
