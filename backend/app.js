@@ -1,16 +1,17 @@
 var express = require("express");
 var app = express();
-var bodyParser = require("body-parser");
+let formidable = require("express-formidable");
 var python = require("./services/python");
 const port = process.env.PORT || 6500;
-app.use(bodyParser.json());
+app.use(formidable());
 
 // ROUTES
 app.get("/", (req, res) => res.send("Hi There!"));
 
-app.get("/test", (req, res) => {
-  python.run('print("Hello World")', function (data) {
-    console.log(data);
+app.post("/python", (req, res) => {
+  var data = req.fields.text;
+  var language = req.fields.language;
+  python.run(data, function (data) {
     res.send(data);
   });
 });
@@ -18,5 +19,3 @@ app.get("/test", (req, res) => {
 app.listen(port, () =>
   console.log(`Backend listening at http://localhost:${port}`)
 );
-
-var fs = require("fs");
