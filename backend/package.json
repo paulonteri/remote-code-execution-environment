@@ -1,0 +1,23 @@
+{
+  "name": "code-executer",
+  "version": "1.0.0",
+  "description": "Remote Code Execution App",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulonteri/code-executer.git"
+  },
+  "author": "Paul Onteri - https://paulonteri.com/",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/paulonteri/code-executer/issues"
+  },
+  "homepage": "https://github.com/paulonteri/code-executer#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
+}
