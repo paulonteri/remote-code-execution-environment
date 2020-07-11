@@ -4,8 +4,7 @@ import { runCode } from "../../actions/Execute";
 
 export default class Execute extends Component {
   handleSubmit(event) {
-    var fm = document.getElementById("code-form");
-    var data = new FormData(fm);
+    var data = new FormData(document.getElementById("code-form"));
     var content = new FormData();
     content.append("text", data.get("text"));
     content.append("language", "python");
