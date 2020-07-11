@@ -1,10 +1,11 @@
 :root {
   --editer-gray: gray;
-  --editer-size: 550px;
+  --editer-white: azure;
+  --editer-height: 550px;
 }
 
 .code-layout {
-  height: var(--editer-size);
+  height: var(--editer-height);
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -16,16 +17,16 @@
 .code-results {
   flex-basis: 35%;
   border-left: 5px solid var(--editer-gray);
-  color: azure;
+  color: var(--editer-white);
 }
 
 #text-edit {
-  height: var(--editer-size) !important;
+  height: var(--editer-height) !important;
   flex-basis: 65%;
 }
 
 #code-results {
-  height: var(--editer-size) !important;
+  height: var(--editer-height) !important;
   width: 100% !important;
   border-bottom: 8px solid var(--editer-gray);
 }

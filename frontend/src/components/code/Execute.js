@@ -4,6 +4,7 @@ import AceEditor from "react-ace";
 import "ace-builds/src-min-noconflict/ext-language_tools";
 import { runCode } from "../../actions/Execute";
 import "./css/Execute.css";
+import "../header/css/Header.css";
 
 const languages = ["javascript", "java", "python"];
 const themes = ["dracula", "monokai"];
@@ -21,6 +22,8 @@ function Execute(props) {
   const [theme, setTheme] = useState("dracula");
   // eslint-disable-next-line
   const [language, setLangauge] = useState("python");
+  // eslint-disable-next-line
+  const [tabs, setTabs] = useState(null);
   const [results, setResults] = useState(null);
   const [handledSucOutput, setHandledSucOutput] = useState(false);
   const [handledFailOutput, setHandledFailOutput] = useState(false);
@@ -33,7 +36,7 @@ function Execute(props) {
     setResults(res);
     if (document) {
       var el = document.getElementById("code-results");
-      el.style.color = "azure";
+      el.style.color = "var(--editer-white)";
     }
   };
 
@@ -101,35 +104,44 @@ function Execute(props) {
       <header>
         <p>Hello there</p>
         <button onClick={handleSubmit}>Submit</button>
+        <div class="dropdown">
+          <button>{language}</button>
+          <ul class="dropdown-content">
+            {languages.map((obj) => (
+              <li key={obj}>{obj}</li>
+            ))}
+          </ul>
+        </div>
       </header>
       <div className="code-layout">
         <AceEditor
-          placeholder="Write Code"
+          placeholder="Write Code. Change the world. Have fun while doing it :)"
           mode={language}
           theme={theme}
           name="text-edit"
           // onLoad={onLoad}
           onChange={onChange}
-          fontSize={15}
+          fontSize={17}
           showPrintMargin={true}
           showGutter={true}
           highlightActiveLine={true}
           value={codeText}
+          readOnly={props.runCodeLoading}
           setOptions={{
             enableBasicAutocompletion: true,
             enableLiveAutocompletion: true,
             showLineNumbers: true,
-            tabSize: 2,
+            tabSize: tabs,
           }}
           editorProps={{ $blockScrolling: true }}
         />
         <div className="code-results">
           <AceEditor
-            placeholder="Code results will be shown here"
+            placeholder="Output will be shown here."
             mode="text"
             theme={theme}
             name="code-results"
-            fontSize={14}
+            fontSize={15}
             showPrintMargin={false}
             showGutter={false}
             highlightActiveLine={false}
