@@ -1,0 +1,3 @@
+export const RUN_CODE_SUCCESS = "RUN_CODE_SUCCESS";
+export const RUN_CODE_RUNNING = "RUN_CODE_RUNNING";
+export const RUN_CODE_FAILED = "RUN_CODE_FAILED";
