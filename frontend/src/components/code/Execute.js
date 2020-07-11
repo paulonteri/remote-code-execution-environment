@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import "./Execute.css";
+import { runCode } from "../../actions/Execute";
 
 export default class Execute extends Component {
   handleSubmit(event) {
     var fm = document.getElementById("code-form");
     var data = new FormData(fm);
+    var content = new FormData();
+    content.append("text", data.get("text"));
+    content.append("language", "python");
     event.preventDefault();
+    runCode(content);
   }
 
   render() {
