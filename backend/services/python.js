@@ -22,7 +22,7 @@ run = (code, func) => {
 
           if (error.toString().includes("ERR_CHILD_PROCESS_STDIO_MAXBUFFER")) {
             errorMessage =
-              "Process terminated. 'maxBuffer' exceeded. This normally happened during an infinite loop.";
+              "Process terminated. 'maxBuffer' exceeded. This normally happens during an infinite loop.";
           } else if (error.signal === "SIGTERM") {
             errorMessage =
               "Process terminated. Please check your code and try again.";

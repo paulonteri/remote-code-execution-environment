@@ -16,11 +16,12 @@
 .code-results {
   flex-basis: 35%;
   border-left: 5px solid var(--editer-gray);
+  color: azure;
 }
 
 #text-edit {
   height: var(--editer-size) !important;
-  width: 70vw !important;
+  flex-basis: 65%;
 }
 
 #code-results {
