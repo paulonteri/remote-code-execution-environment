@@ -1,0 +1,30 @@
+:root {
+  --editer-gray: gray;
+  --editer-size: 550px;
+}
+
+.code-layout {
+  height: var(--editer-size);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: flex-start;
+  border-bottom: 8px solid var(--editer-gray);
+  border-top: 5px solid var(--editer-gray);
+}
+
+.code-results {
+  flex-basis: 35%;
+  border-left: 5px solid var(--editer-gray);
+}
+
+#text-edit {
+  height: var(--editer-size) !important;
+  width: 70vw !important;
+}
+
+#code-results {
+  height: var(--editer-size) !important;
+  width: 100% !important;
+  border-bottom: 8px solid var(--editer-gray);
+}
