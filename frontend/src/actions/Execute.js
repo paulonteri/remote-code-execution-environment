@@ -33,6 +33,7 @@ export const runCodeTest = (code) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: RUN_CODE_SUCCESS,
+        payload: res.data,
       });
     })
     .catch((err) => {
