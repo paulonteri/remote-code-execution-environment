@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import AceEditor from "react-ace";
 import "ace-builds/src-min-noconflict/ext-language_tools";
-// import { runCode } from "../../actions/Execute";
+import { runCode } from "../../actions/Execute";
 
 import "./css/Execute.css";
 const languages = ["javascript", "java", "python"];
@@ -13,17 +13,8 @@ languages.forEach((lang) => {
 });
 
 export default class Execute extends Component {
-  // handleSubmit(event) {
-  //   var data = new FormData(document.getElementById("code-form"));
-  //   var content = new FormData();
-  //   content.append("text", data.get("text"));
-  //   content.append("language", "python");
-  //   event.preventDefault();
-  //   runCode(content);
-  // }
-
   state = {
-    placeHolder: `function helloWorld() {
+    text: `function helloWorld() {
     console.log("Hello World!");
   }`,
     theme: "monokai",
@@ -31,7 +22,18 @@ export default class Execute extends Component {
   };
 
   onChange = (values) => {
-    console.log(values);
+    this.state.text = values;
+  };
+
+  handleSubmit = (e) => {
+    var data = this.state.text;
+    if (data) {
+      var content = new FormData();
+      content.append("text", data);
+      content.append("language", this.state.language);
+      e.preventDefault();
+      runCode(content);
+    }
   };
 
   render() {
@@ -39,6 +41,7 @@ export default class Execute extends Component {
       <Fragment>
         <header>
           <p>Hello there</p>
+          <button onClick={this.handleSubmit}>Submit</button>
         </header>
         <div className="code-layout">
           <AceEditor
@@ -52,7 +55,7 @@ export default class Execute extends Component {
             showPrintMargin={true}
             showGutter={true}
             highlightActiveLine={true}
-            value={this.state.placeHolder}
+            value={this.state.text}
             setOptions={{
               enableBasicAutocompletion: true,
               enableLiveAutocompletion: true,
@@ -71,6 +74,7 @@ export default class Execute extends Component {
               showPrintMargin={false}
               showGutter={false}
               highlightActiveLine={false}
+              value={this.state.text}
               readOnly={true}
               editorProps={{ $blockScrolling: true }}
             />
