@@ -1,18 +1,24 @@
 var express = require("express");
+var formidable = require("express-formidable");
+var cors = require("cors");
 var app = express();
-let formidable = require("express-formidable");
+var port = process.env.PORT || 6500;
 var python = require("./services/python");
-const port = process.env.PORT || 6500;
 app.use(formidable());
+var corsOptions = {
+  // origin: "http://example.com",
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 
 // ROUTES
 app.get("/", (req, res) => res.send("Hi There!"));
 
 app.post("/python", (req, res) => {
-  var data = req.fields.text;
+  var text = req.fields.text;
   var language = req.fields.language;
-  python.run(data, function (data) {
-    res.send(data);
+  python.run(text, function (data) {
+    res.status(200).json(data);
   });
 });
 

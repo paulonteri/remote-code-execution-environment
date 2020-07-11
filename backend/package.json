@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/paulonteri/code-executer#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-formidable": "^1.2.0"
   }

@@ -37,7 +37,7 @@ run = (code, func) => {
             console.log("Successfully executed !");
             console.log("Stdout: " + stdout);
           }
-          func(stdout);
+          func({ stdout: stdout });
         }
       });
     }
