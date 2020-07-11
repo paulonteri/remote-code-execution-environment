@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import AceEditor from "react-ace";
 import "ace-builds/src-min-noconflict/ext-language_tools";
-import { runCode, runCodeTest } from "../../actions/Execute";
+import { runCode } from "../../actions/Execute";
 import "./css/Execute.css";
 
 const languages = ["javascript", "java", "python"];
@@ -14,20 +14,16 @@ languages.forEach((lang) => {
 });
 
 function Execute(props) {
-  // state = {
-  //   text: `print("This code is running remotely!")`,
-  //   theme: "python",
-  //   language: "python",
-  //   results: null,
-  // };
-
   const [codeText, setCodeText] = useState(
     `print("This code is running remotely!")`
   );
+  // eslint-disable-next-line
   const [theme, setTheme] = useState("dracula");
+  // eslint-disable-next-line
   const [language, setLangauge] = useState("python");
   const [results, setResults] = useState(null);
-  const [inserted, setInserted] = useState(false);
+  const [handledSucOutput, setHandledSucOutput] = useState(false);
+  const [handledFailOutput, setHandledFailOutput] = useState(false);
 
   const onChange = (values) => {
     setCodeText(values);
@@ -51,81 +47,54 @@ function Execute(props) {
 
   const handleSubmit = (e) => {
     var data = codeText;
-    setInserted(false);
-    // if (data) {
-    //   const printSucResults = (res) => {
-    //     setResults(res)
-    //     if (document) {
-    //       var el = document.getElementById("code-results");
-    //       el.style.color = "azure";
-    //     }
-    //   };
-
-    //   const printErrResults = (res) => {
-    //     setResults(res)
-    //     if (document) {
-    //       var el = document.getElementById("code-results");
-    //       el.style.color = "red";
-    //     }
-    //   };
-
-    //   setCodeText("")
-    //   var content = new FormData();
-    //   content.append("text", data);
-    //   content.append("language", language);
-    //   e.preventDefault();
-    //   runCode(content, function (res, failed) {
-    //     if (failed) {
-    //       if (res) {
-    //         printErrResults(res);
-    //       } else {
-    //         printErrResults(
-    //           "Something went wrong. Please check your code and try again later."
-    //         );
-    //       }
-    //     } else {
-    //       if (res) {
-    //         if (res.ERROR) {
-    //           printErrResults(res.ERROR);
-    //         } else if (res.stdout) {
-    //           printSucResults(res.stdout);
-    //         } else {
-    //           printSucResults("Code executed successfully with no outputs :)");
-    //         }
-    //       } else {
-    //         printSucResults("Code executed successfully with no outputs :)");
-    //       }
-    //     }
-    //   });
-    // } else {
-    //   // printErrResults("Please write some code.");
-    // }
-    setCodeText("");
-    var content = new FormData();
-    content.append("text", data);
-    content.append("language", language);
-    props.runCodeTest(content);
+    setResults("");
+    setHandledSucOutput(false);
+    setHandledFailOutput(false);
+    e.preventDefault();
+    if (data) {
+      var content = new FormData();
+      content.append("text", data);
+      content.append("language", language);
+      props.runCode(content);
+    } else {
+      printSucResults("Please write some code first :)");
+    }
   };
 
-  // useEffect(() => {
-  //   console.log(props);
-  //   console.log(props.runCodeOk);
-  //   if (props.runCodeOk) {
-  //     setResults(props.output);
-  //   }
-  //   // eslint-disable-next-line
-  // }, []);
+  const handleSuc = (res) => {
+    if (res) {
+      if (res.ERROR) {
+        printErrResults(res.ERROR);
+      } else if (res.stdout) {
+        printSucResults(res.stdout);
+      } else {
+        printSucResults("Code executed successfully with no outputs :)");
+      }
+    } else {
+      printSucResults("Code executed successfully with no outputs :)");
+    }
+  };
+
+  const handleFail = (res) => {
+    if (res) {
+      printErrResults(res);
+    } else {
+      printErrResults(
+        "Something went wrong. Please check your code and try again later."
+      );
+    }
+  };
 
   useEffect(() => {
-    console.log(props);
-    console.log(props.runCodeOk);
-
-    if (props.runCodeOk && !inserted) {
-      setResults(props.output.stdout);
-      setInserted(true);
+    if (props.runCodeOk && !handledSucOutput) {
+      handleSuc(props.output);
+      setHandledSucOutput(true);
+    } else if (props.runCodeFail && !handledFailOutput) {
+      handleFail(props.output);
+      setHandledFailOutput(true);
     }
     // eslint-disable-next-line
-  }, [props.runCodeOk]);
+  }, [props.runCodeOk, props.runCodeFail]);
 
   return (
     <Fragment>
@@ -181,4 +150,4 @@ const mapStateToProps = (state) => ({
   runCodeOk: state.executionReducer.runCodeOk,
 });
 
-export default connect(mapStateToProps, { runCodeTest })(Execute);
+export default connect(mapStateToProps, { runCode })(Execute);
