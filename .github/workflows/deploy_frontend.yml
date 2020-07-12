@@ -22,14 +22,16 @@ jobs:
       - name: Navigate
         run: cd frontend
       - name: Install Dependencies
+        working-directory: ./frontend
         run: yarn
       - name: Build
+        working-directory: ./frontend
         env:
           CI: false
         run: yarn build
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
-          args: deploy --only hosting
+          args: cd frontend && deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
