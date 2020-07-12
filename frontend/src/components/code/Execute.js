@@ -103,8 +103,16 @@ function Execute(props) {
   };
 
   const onLanguageChange = (lang) => {
+    if ([pyDefault, jsDefault, javaDefault].includes(codeText)) {
+      if (lang == "python") {
+        setCodeText(pyDefault);
+      } else if (lang === "java") {
+        setCodeText(javaDefault);
+      } else if (lang === "javascript") {
+        setCodeText(jsDefault);
+      }
+    }
     setLangauge(lang);
-    // more logic
   };
 
   const onThemeChange = (th) => {
