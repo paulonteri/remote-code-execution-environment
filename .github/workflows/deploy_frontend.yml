@@ -22,8 +22,10 @@ jobs:
       - name: Navigate
         run: cd frontend
       - name: Install Dependencies
+        working-directory: ./frontend
         run: yarn
       - name: Build
+        working-directory: ./frontend
         env:
           CI: false
         run: yarn build
@@ -33,3 +35,4 @@ jobs:
           args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          PROJECT_PATH: './frontend'
