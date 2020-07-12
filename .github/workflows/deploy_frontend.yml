@@ -20,7 +20,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@master
       - name: Install Dependencies
-        run: yarn
+        run: cd frontend yarn
       - name: Build
         env:
           CI: false
