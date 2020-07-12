@@ -20,6 +20,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "express-formidable": "^1.2.0"
+    "express-formidable": "^1.2.0",
+    "uuid": "^8.2.0"
   }
 }
