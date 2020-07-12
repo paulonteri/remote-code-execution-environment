@@ -1,0 +1,35 @@
+name: Deploy Frontend
+on:
+  push:
+    paths-ignore: 
+      - 'core/**'
+    branches:
+      - deploy
+      - master
+  pull_request:
+    paths-ignore: 
+      - 'core/**'
+    branches:
+      - deploy
+
+jobs:
+  build:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Navigate
+        run: cd frontend
+      - name: Install Dependencies
+        run: yarn
+      - name: Build
+        env:
+          CI: false
+        run: yarn build
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
