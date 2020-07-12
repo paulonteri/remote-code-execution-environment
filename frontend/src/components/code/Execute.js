@@ -27,11 +27,12 @@ languages.forEach((lang) => {
 function Execute(props) {
   const javaDefault = `public class Main {
     public static void main(String[] args) {
-        System.out.println("This code is running remotely!");
+        System.out.println("FAST. GOOD. CHEAP. Choose any two.");
     }
   }`;
-  const pyDefault = `print("This code is running remotely!")`;
-  const jsDefault = `console.log("This code is running remotely!")`;
+
+  const pyDefault = `print("Truth can only be found in one place: the code.")`;
+  const jsDefault = `console.log("The best way to get a project done faster is to start sooner.")`;
 
   const [theme, setTheme] = useState("dracula");
   const [language, setLangauge] = useState("python");
@@ -103,7 +104,7 @@ function Execute(props) {
   };
 
   const onLanguageChange = (lang) => {
-    if ([pyDefault, jsDefault, javaDefault].includes(codeText)) {
+    if ([pyDefault, jsDefault, javaDefault].includes(codeText) || !codeText) {
       if (lang == "python") {
         setCodeText(pyDefault);
       } else if (lang === "java") {
