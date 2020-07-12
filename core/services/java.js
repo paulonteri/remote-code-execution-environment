@@ -7,14 +7,28 @@ const configPath = config.codePath;
 const timeOut = config.timeOut;
 
 run = (code, func) => {
-  var fileName = uuidv1();
+  var folderName = uuidv1();
+  var filename = "Main.java";
+  var folder = configPath + folderName;
+  console.log(configPath);
+  var path = folder + "/";
 
-  fs.writeFile(configPath + fileName + ".py", code, function (err) {
+  // https://nodejs.org/api/fs.html#fs_fs_mkdir_path_options_callbacks
+  // fs.mkdir(path, mode, callback)
+  fs.mkdir(folder, 0777, function (err) {
+    if (err) {
+      func({ ERROR: "Server error" });
+      return;
+    }
+  });
+
+  fs.writeFile(path + filename, code, function (err) {
     if (err) {
       // handle error
       console.log("Error creating file: " + err);
     } else {
-      var command = "python " + configPath + fileName + ".py";
+      var command =
+        "cd " + folder + " && " + " javac Main.java" + "&& java Main";
       exec(command, { timeout: timeOut }, function (error, stdout, stderr) {
         if (error) {
           if (env != "production") {
@@ -45,11 +59,5 @@ run = (code, func) => {
     }
   });
 };
-
-// run('print("Hello World")    \nprint(1+2)\nwhile(True):   1+2', function (
-//   data
-// ) {
-//   console.log(data);
-// });
 
 module.exports = { run: run };
