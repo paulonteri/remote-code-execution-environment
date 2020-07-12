@@ -3,16 +3,28 @@ var formidable = require("express-formidable");
 var cors = require("cors");
 var app = express();
 var port = process.env.PORT || 6500;
+var frontend = process.env.FRONTEND || "https://runcode.paulonteri.com";
 const python = require("./services/python");
 const java = require("./services/java");
 const javascript = require("./services/javascript");
 
 app.use(formidable());
-var corsOptions = {
-  // origin: "http://example.com",
-  optionsSuccessStatus: 200,
+
+const corsOptions = () => {
+  if (process.env.NODE_ENV === "production") {
+    return {
+      origin: "https://runcode.paulonteri.com",
+      optionsSuccessStatus: 200,
+      methods: "GET,POST",
+    };
+  } else {
+    return {
+      optionsSuccessStatus: 200,
+    };
+  }
 };
-app.use(cors(corsOptions));
+
+app.use(cors(corsOptions()));
 
 // ROUTES
 app.get("/", (req, res) =>
@@ -21,7 +33,7 @@ app.get("/", (req, res) =>
   )
 );
 
-app.post("/python", (req, res) => {
+app.post("/code", (req, res) => {
   var text = req.fields.text;
   var language = req.fields.language;
 
