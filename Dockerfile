@@ -12,5 +12,8 @@ RUN yarn
 # Bundle app source
 COPY ./core .
 
+ENV PORT 8080
+
 EXPOSE 8080
+
 CMD [ "node", "Server.js" ]
