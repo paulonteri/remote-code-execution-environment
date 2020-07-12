@@ -24,11 +24,17 @@ languages.forEach((lang) => {
 });
 
 function Execute(props) {
+  const javaDefault = `public class Main {
+    public static void main(String[] args) {
+        System.out.println("This code is running remotely!");
+    }
+  }`;
+  const pyDefault = `print("This code is running remotely!")`;
+  const jsDefault = `console.log("This code is running remotely!")`;
+
   const [theme, setTheme] = useState("dracula");
   const [language, setLangauge] = useState("python");
-  const [codeText, setCodeText] = useState(
-    `print("This code is running remotely!")`
-  );
+  const [codeText, setCodeText] = useState(pyDefault);
   const [tabs, setTabs] = useState(4);
   const [fontSize, setFontSize] = useState(17);
   const [results, setResults] = useState(null);
