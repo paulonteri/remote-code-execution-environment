@@ -5,6 +5,11 @@ import "ace-builds/src-min-noconflict/ext-language_tools";
 import { runCode } from "../../actions/Execute";
 import "./css/Execute.css";
 import "../header/css/Header.css";
+import playGrayIcon from "../../media/icon-play-light-gray.png";
+// eslint-disable-next-line
+import playBlackIcon from "../../media/icon-play-black.png";
+// eslint-disable-next-line
+import gearsIcon from "../../media/icon-gears.png";
 
 const languages = ["javascript", "java", "python"];
 const themes = ["dracula", "monokai"];
@@ -121,76 +126,84 @@ function Execute(props) {
   return (
     <Fragment>
       <header>
-        <p>Hello there</p>
-        <button onClick={handleSubmit}>Submit</button>
-        <div class="dropdown">
-          <button>{language}</button>
-          <ul class="dropdown-content">
-            {languages
-              .filter((lang) => lang !== language)
-              .map((obj) => (
-                <li
-                  key={obj}
-                  onClick={() => {
-                    onLanguageChange(obj);
-                  }}
-                >
-                  {obj}
-                </li>
-              ))}
-          </ul>
+        <div className="header-intro">
+          <p>Hello there</p>
         </div>
-        <div class="dropdown">
-          <button>{theme}</button>
-          <ul class="dropdown-content">
-            {themes
-              .filter((th) => th !== theme)
-              .map((obj) => (
-                <li
-                  key={obj}
-                  onClick={() => {
-                    onThemeChange(obj);
-                  }}
-                >
-                  {obj}
-                </li>
-              ))}
-          </ul>
-        </div>
-        <div class="dropdown">
-          <button>Tab Size: {tabs}</button>
-          <ul class="dropdown-content">
-            {tabSizes
-              .filter((tb) => tb !== tabs)
-              .map((obj) => (
-                <li
-                  key={obj}
-                  onClick={() => {
-                    onTabChange(obj);
-                  }}
-                >
-                  {obj}
-                </li>
-              ))}
-          </ul>
-        </div>
+        <div className="header-buttons">
+          <div className="dropdown">
+            <button>{language}</button>
+            <ul className="dropdown-content">
+              {languages
+                .filter((lang) => lang !== language)
+                .map((obj) => (
+                  <li
+                    key={obj}
+                    onClick={() => {
+                      onLanguageChange(obj);
+                    }}
+                  >
+                    {obj}
+                  </li>
+                ))}
+            </ul>
+          </div>
+          <div className="dropdown">
+            <button>{theme}</button>
+            <ul className="dropdown-content">
+              {themes
+                .filter((th) => th !== theme)
+                .map((obj) => (
+                  <li
+                    key={obj}
+                    onClick={() => {
+                      onThemeChange(obj);
+                    }}
+                  >
+                    {obj}
+                  </li>
+                ))}
+            </ul>
+          </div>
+          <div className="dropdown">
+            <button>Tab Size: {tabs}</button>
+            <ul className="dropdown-content">
+              {tabSizes
+                .filter((tb) => tb !== tabs)
+                .map((obj) => (
+                  <li
+                    key={obj}
+                    onClick={() => {
+                      onTabChange(obj);
+                    }}
+                  >
+                    {obj}
+                  </li>
+                ))}
+            </ul>
+          </div>
 
-        <div class="dropdown">
-          <button>Font Size: {fontSize}</button>
-          <ul class="dropdown-content">
-            {fontSizes
-              .filter((fn) => fn !== fontSizes)
-              .map((obj) => (
-                <li
-                  key={obj}
-                  onClick={() => {
-                    onFontSzChange(obj);
-                  }}
-                >
-                  {obj}
-                </li>
-              ))}
-          </ul>
+          <div className="dropdown">
+            <button>Font Size: {fontSize}</button>
+            <ul className="dropdown-content">
+              {fontSizes
+                .filter((fn) => fn !== fontSizes)
+                .map((obj) => (
+                  <li
+                    key={obj}
+                    onClick={() => {
+                      onFontSzChange(obj);
+                    }}
+                  >
+                    {obj}
+                  </li>
+                ))}
+            </ul>
+          </div>
+
+          <div className="run-code">
+            <img src={playGrayIcon} alt="Play Button" onClick={handleSubmit} />
+            <span class="tooltiptext">Run Code</span>
+          </div>
         </div>
       </header>
       <div className="code-layout">

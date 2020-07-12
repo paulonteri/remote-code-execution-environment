@@ -1,15 +1,44 @@
+header {
+  display: flex;
+  flex-direction: row;
+  height: 55px;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+.header-buttons {
+  display: flex;
+  flex-direction: row;
+  padding-right: 20px;
+}
+
+.header-buttons div {
+  margin: auto 5px;
+}
+
+.run-code img {
+  height: 37px;
+  width: 45px;
+  padding: 0 2px;
+  margin: 0;
+  cursor: pointer;
+}
+
 .dropdown {
   position: relative;
   display: inline-block;
+  cursor: pointer;
 }
 
 .dropdown button {
   border: none;
-  background-color: var(--editer-light-gray);
+  background-color: var(--editer-gray);
   margin: 0;
-  padding: 8px 0;
+  padding: 7px 0;
   width: 115px;
-  border-radius: 5%;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .dropdown button,
@@ -34,7 +63,7 @@ li {
   padding: 0;
   width: 115px;
   margin: 0;
-  z-index: 1;
+  z-index: 5;
   border-radius: 0 0 3% 3%;
   list-style-type: none;
   text-align: center;
@@ -54,3 +83,20 @@ li {
 /* .dropdown-content p:last-of-type {
   font-size: 0.75em;
 } */
+
+.tooltiptext {
+  visibility: hidden;
+  width: 90px;
+  color: var(--editer-white);
+  text-align: center;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  right: 3px;
+  top: 45px;
+  font-size: medium;
+}
+
+.run-code:hover .tooltiptext {
+  visibility: visible;
+}
