@@ -1,0 +1,30 @@
+footer ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+footer li {
+  margin: 0 20px;
+}
+
+footer li a,
+p {
+  color: var(--editer-white);
+}
+
+footer p a {
+  color: var(--editer-white);
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+footer p {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+}
