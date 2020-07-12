@@ -12,6 +12,7 @@
     "react": "^16.13.1",
     "react-ace": "^9.1.1",
     "react-dom": "^16.13.1",
+    "react-epic-spinners": "^0.4.1",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",

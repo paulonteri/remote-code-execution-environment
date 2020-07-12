@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import AceEditor from "react-ace";
+import { AtomSpinner } from "react-epic-spinners";
 import "ace-builds/src-min-noconflict/ext-language_tools";
 import { runCode } from "../../actions/Execute";
 import "./css/Execute.css";
@@ -145,7 +146,7 @@ function Execute(props) {
         </div>
         <div className="header-buttons">
           <div className="dropdown">
-            <button>{language}</button>
+            <button id="langauge-btn">{language}</button>
             <ul className="dropdown-content">
               {languages
                 .filter((lang) => lang !== language)
@@ -215,12 +216,25 @@ function Execute(props) {
           </div>
 
           <div className="run-code">
-            <img src={playGrayIcon} alt="Play Button" onClick={handleSubmit} />
-            <span className="tooltiptext">Run Code</span>
+            {props.runCodeLoading ? (
+              <AtomSpinner
+                size={50}
+                color="var(--editer-light-gray)"
+              ></AtomSpinner>
+            ) : (
+              <Fragment>
+                <img
+                  src={playGrayIcon}
+                  alt="Play Button"
+                  onClick={handleSubmit}
+                />
+                <span className="tooltiptext">Run Code</span>
+              </Fragment>
+            )}
           </div>
         </div>
       </header>
-      <div className="code-layout">
+      <div className="code-layout" id="code-layout">
         <AceEditor
           placeholder="Write Code. Change the world. Have fun while doing it :)"
           mode={language}
