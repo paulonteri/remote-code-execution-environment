@@ -32,6 +32,16 @@
 } */
 
 @media only screen and (max-width: 769px) {
+  #text-edit {
+    font-size: medium !important;
+  }
+
+  #code-results {
+    font-size: medium !important;
+  }
+}
+
+@media only screen and (max-width: 769px) {
   .code-layout {
     height: 750px;
     display: flex;
