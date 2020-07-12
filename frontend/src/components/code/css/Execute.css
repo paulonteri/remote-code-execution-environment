@@ -1,9 +1,3 @@
-:root {
-  --editer-gray: gray;
-  --editer-white: azure;
-  --editer-height: 550px;
-}
-
 .code-layout {
   height: var(--editer-height);
   display: flex;
@@ -30,3 +24,9 @@
   width: 100% !important;
   border-bottom: 8px solid var(--editer-gray);
 }
+
+/* #code-results,
+#text-edit {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+} */

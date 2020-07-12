@@ -8,6 +8,8 @@ import "../header/css/Header.css";
 
 const languages = ["javascript", "java", "python"];
 const themes = ["dracula", "monokai"];
+const tabSizes = [2, 4, 8];
+const fontSizes = [12, 14, 15, 16, 18, 20, 22, 24, 28];
 themes.forEach((theme) => require(`ace-builds/src-noconflict/theme-${theme}`));
 languages.forEach((lang) => {
   require(`ace-builds/src-noconflict/mode-${lang}`);
@@ -15,15 +17,13 @@ languages.forEach((lang) => {
 });
 
 function Execute(props) {
+  const [theme, setTheme] = useState("dracula");
+  const [language, setLangauge] = useState("python");
   const [codeText, setCodeText] = useState(
     `print("This code is running remotely!")`
   );
-  // eslint-disable-next-line
-  const [theme, setTheme] = useState("dracula");
-  // eslint-disable-next-line
-  const [language, setLangauge] = useState("python");
-  // eslint-disable-next-line
-  const [tabs, setTabs] = useState(null);
+  const [tabs, setTabs] = useState(4);
+  const [fontSize, setFontSize] = useState(17);
   const [results, setResults] = useState(null);
   const [handledSucOutput, setHandledSucOutput] = useState(false);
   const [handledFailOutput, setHandledFailOutput] = useState(false);
@@ -88,6 +88,25 @@ function Execute(props) {
     }
   };
 
+  const onLanguageChange = (lang) => {
+    setLangauge(lang);
+    // more logic
+  };
+
+  const onThemeChange = (th) => {
+    setTheme(th);
+    // more logic
+  };
+
+  const onTabChange = (tb) => {
+    setTabs(tb);
+    // more logic
+  };
+
+  const onFontSzChange = (fn) => {
+    setFontSize(fn);
+  };
+
   useEffect(() => {
     if (props.runCodeOk && !handledSucOutput) {
       handleSuc(props.output);
@@ -107,9 +126,70 @@ function Execute(props) {
         <div class="dropdown">
           <button>{language}</button>
           <ul class="dropdown-content">
-            {languages.map((obj) => (
-              <li key={obj}>{obj}</li>
-            ))}
+            {languages
+              .filter((lang) => lang !== language)
+              .map((obj) => (
+                <li
+                  key={obj}
+                  onClick={() => {
+                    onLanguageChange(obj);
+                  }}
+                >
+                  {obj}
+                </li>
+              ))}
+          </ul>
+        </div>
+        <div class="dropdown">
+          <button>{theme}</button>
+          <ul class="dropdown-content">
+            {themes
+              .filter((th) => th !== theme)
+              .map((obj) => (
+                <li
+                  key={obj}
+                  onClick={() => {
+                    onThemeChange(obj);
+                  }}
+                >
+                  {obj}
+                </li>
+              ))}
+          </ul>
+        </div>
+        <div class="dropdown">
+          <button>Tab Size: {tabs}</button>
+          <ul class="dropdown-content">
+            {tabSizes
+              .filter((tb) => tb !== tabs)
+              .map((obj) => (
+                <li
+                  key={obj}
+                  onClick={() => {
+                    onTabChange(obj);
+                  }}
+                >
+                  {obj}
+                </li>
+              ))}
+          </ul>
+        </div>
+
+        <div class="dropdown">
+          <button>Font Size: {fontSize}</button>
+          <ul class="dropdown-content">
+            {fontSizes
+              .filter((fn) => fn !== fontSizes)
+              .map((obj) => (
+                <li
+                  key={obj}
+                  onClick={() => {
+                    onFontSzChange(obj);
+                  }}
+                >
+                  {obj}
+                </li>
+              ))}
           </ul>
         </div>
       </header>
@@ -121,7 +201,7 @@ function Execute(props) {
           name="text-edit"
           // onLoad={onLoad}
           onChange={onChange}
-          fontSize={17}
+          fontSize={fontSize}
           showPrintMargin={true}
           showGutter={true}
           highlightActiveLine={true}
@@ -141,7 +221,7 @@ function Execute(props) {
             mode="text"
             theme={theme}
             name="code-results"
-            fontSize={15}
+            fontSize={fontSize + 2}
             showPrintMargin={false}
             showGutter={false}
             highlightActiveLine={false}

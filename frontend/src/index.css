@@ -1,3 +1,11 @@
+:root {
+  --editer-gray: gray;
+  --editer-light-gray: lightgray;
+  --editer-black: #282a36;
+  --editer-white: azure;
+  --editer-height: 550px;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
