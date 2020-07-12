@@ -6,10 +6,10 @@ import { runCode } from "../../actions/Execute";
 import "./css/Execute.css";
 import "../header/css/Header.css";
 import playGrayIcon from "../../media/icon-play-light-gray.png";
-// eslint-disable-next-line
-import playBlackIcon from "../../media/icon-play-black.png";
-// eslint-disable-next-line
-import gearsIcon from "../../media/icon-gears.png";
+// import playBlackIcon from "../../media/icon-play-black.png";
+// import gearsIcon from "../../media/icon-gears.png";
+import octoGray from "../../media/icon-octocat-gray.png";
+// import octoBlack from "../../media/icon-octocat-black.png";
 
 const languages = ["javascript", "java", "python"];
 const themes = ["dracula", "monokai"];
@@ -127,7 +127,13 @@ function Execute(props) {
     <Fragment>
       <header>
         <div className="header-intro">
-          <p>Hello there</p>
+          <a
+            href="https://github.com/paulonteri/remote-code-execution-environment"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={octoGray} alt="Octocat Logo" />
+          </a>
         </div>
         <div className="header-buttons">
           <div className="dropdown">

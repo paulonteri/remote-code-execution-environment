@@ -100,3 +100,9 @@ li {
 .run-code:hover .tooltiptext {
   visibility: visible;
 }
+
+.header-intro img {
+  height: 45px;
+  width: 45px;
+  padding: 5px 15px;
+}
