@@ -15,10 +15,12 @@ const languages = ["javascript", "java", "python"];
 const themes = ["dracula", "monokai"];
 const tabSizes = [2, 4, 8];
 const fontSizes = [12, 14, 15, 16, 18, 20, 22, 24, 28];
-themes.forEach((theme) => require(`ace-builds/src-noconflict/theme-${theme}`));
+themes.forEach((theme) =>
+  require(`ace-builds/src-min-noconflict/theme-${theme}`)
+);
 languages.forEach((lang) => {
-  require(`ace-builds/src-noconflict/mode-${lang}`);
-  require(`ace-builds/src-noconflict/snippets/${lang}`);
+  require(`ace-builds/src-min-noconflict/mode-${lang}`);
+  require(`ace-builds/src-min-noconflict/snippets/${lang}`);
 });
 
 function Execute(props) {
