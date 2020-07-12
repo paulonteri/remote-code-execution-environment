@@ -19,8 +19,10 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
+      - name: Navigate
+        run: cd frontend
       - name: Install Dependencies
-        run: cd frontend yarn
+        run: yarn
       - name: Build
         env:
           CI: false
