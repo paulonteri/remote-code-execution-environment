@@ -7,3 +7,15 @@ ul {
 a {
   text-decoration: none;
 }
+
+@media only screen and (max-width: 769px) {
+  .hide-tablet {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}

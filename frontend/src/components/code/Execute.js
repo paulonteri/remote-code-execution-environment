@@ -155,7 +155,7 @@ function Execute(props) {
                 ))}
             </ul>
           </div>
-          <div className="dropdown">
+          <div className="dropdown hide-tablet">
             <button>{theme}</button>
             <ul className="dropdown-content">
               {themes
@@ -172,7 +172,7 @@ function Execute(props) {
                 ))}
             </ul>
           </div>
-          <div className="dropdown">
+          <div className="dropdown hide-tablet">
             <button>Tab Size: {tabs}</button>
             <ul className="dropdown-content">
               {tabSizes
@@ -190,7 +190,7 @@ function Execute(props) {
             </ul>
           </div>
 
-          <div className="dropdown">
+          <div className="dropdown hide-mobile">
             <button>Font Size: {fontSize}</button>
             <ul className="dropdown-content">
               {fontSizes
@@ -210,7 +210,7 @@ function Execute(props) {
 
           <div className="run-code">
             <img src={playGrayIcon} alt="Play Button" onClick={handleSubmit} />
-            <span class="tooltiptext">Run Code</span>
+            <span className="tooltiptext">Run Code</span>
           </div>
         </div>
       </header>
@@ -247,7 +247,7 @@ function Execute(props) {
             showGutter={false}
             highlightActiveLine={false}
             value={results}
-            readOnly={true}
+            readOnly={false}
             editorProps={{ $blockScrolling: true }}
           />
         </div>

@@ -106,3 +106,14 @@ li {
   width: 45px;
   padding: 5px 15px;
 }
+
+@media only screen and (max-width: 600px) {
+  .dropdown button {
+    padding: 7px 0;
+    width: 95px;
+  }
+
+  .dropdown-content {
+    width: 95px;
+  }
+}

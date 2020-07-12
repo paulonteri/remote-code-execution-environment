@@ -30,3 +30,41 @@
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 } */
+
+@media only screen and (max-width: 769px) {
+  .code-layout {
+    height: 750px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+    border-bottom: 15px solid var(--editer-gray);
+    border-top: 10px solid var(--editer-gray);
+  }
+
+  .code-results {
+    flex-basis: 100%;
+    border-left: 0 solid var(--editer-gray);
+    color: var(--editer-white);
+    height: 250px !important;
+  }
+
+  .ace-content {
+    height: 500px !important;
+  }
+
+  #text-edit {
+    height: 500px !important;
+    flex-basis: 100%;
+    width: 100% !important;
+    border-bottom: 8px solid var(--editer-gray);
+  }
+
+  #code-results {
+    height: 250px !important;
+    width: 100% !important;
+    flex-basis: 100%;
+    width: 100% !important;
+    border-bottom: 0 solid var(--editer-gray);
+  }
+}
