@@ -1,6 +1,8 @@
 .idea
 .vscode
 
+temp/
+
 # Logs
 logs
 *.log
