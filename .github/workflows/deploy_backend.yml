@@ -1,14 +1,10 @@
 name: Deploy Backend
 on:
   push:
-    paths: 
-      - 'backend/**'
     branches: 
       - master
       - deploy
   pull_request:
-    paths: 
-      - 'backend/**'
     branches:
       - 'deploy'
 
