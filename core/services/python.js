@@ -14,7 +14,7 @@ run = (code, func) => {
       // handle error
       console.log("Error creating file: " + err);
     } else {
-      var command = "python " + configPath + fileName + ".py";
+      var command = "python3 " + configPath + fileName + ".py";
       exec(command, { timeout: timeOut }, function (error, stdout, stderr) {
         if (error) {
           if (env != "production") {
