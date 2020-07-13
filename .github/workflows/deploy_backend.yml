@@ -1,14 +1,14 @@
 name: Deploy Backend
 on:
   push:
-    paths-ignore: 
-      - 'frontend/**'
+    paths: 
+      - 'core/**'
     branches: 
       - master
       - deploy
   pull_request:
-    paths-ignore: 
-      - 'frontend/**'
+    paths: 
+      - 'core/**'
     branches:
       - 'deploy'
 
