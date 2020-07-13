@@ -4,7 +4,7 @@ var server = "https://api.runcode.proj.paulonteri.com";
 
 const addr = () => {
   if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
-    return "http://localhost:6500" + "/code";
+    return "http://localhost:6500/code";
   } else {
     return server + "/code";
   }

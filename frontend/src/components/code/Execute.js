@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import AceEditor from "react-ace";
-import { AtomSpinner } from "react-epic-spinners";
+import { AtomSpinner, SwappingSquaresSpinner } from "react-epic-spinners";
 import "ace-builds/src-min-noconflict/ext-language_tools";
 import { runCode } from "../../actions/Execute";
 import "./css/Execute.css";
@@ -105,7 +105,7 @@ function Execute(props) {
 
   const onLanguageChange = (lang) => {
     if ([pyDefault, jsDefault, javaDefault].includes(codeText) || !codeText) {
-      if (lang == "python") {
+      if (lang === "python") {
         setCodeText(pyDefault);
       } else if (lang === "java") {
         setCodeText(javaDefault);
@@ -123,7 +123,6 @@ function Execute(props) {
 
   const onTabChange = (tb) => {
     setTabs(tb);
-    // more logic
   };
 
   const onFontSzChange = (fn) => {
@@ -140,6 +139,15 @@ function Execute(props) {
     }
     // eslint-disable-next-line
   }, [props.runCodeOk, props.runCodeFail]);
+
+  useEffect(() => {
+    if (props.runCodeLoading) {
+      document.getElementById("overlay").style.display = "block";
+    } else {
+      document.getElementById("overlay").style.display = "none";
+    }
+    // eslint-disable-next-line
+  }, [props.runCodeLoading]);
 
   return (
     <Fragment>
@@ -226,10 +234,10 @@ function Execute(props) {
 
           <div className="run-code">
             {props.runCodeLoading ? (
-              <AtomSpinner
-                size={50}
+              <SwappingSquaresSpinner
+                size={45}
                 color="var(--editer-light-gray)"
-              ></AtomSpinner>
+              ></SwappingSquaresSpinner>
             ) : (
               <Fragment>
                 <img
@@ -280,6 +288,13 @@ function Execute(props) {
             editorProps={{ $blockScrolling: true }}
           />
         </div>
+      </div>
+      <div id="overlay">
+        <AtomSpinner
+          size={120}
+          className="spinner"
+          color="var(--editer-light-gray)"
+        ></AtomSpinner>
       </div>
     </Fragment>
   );
