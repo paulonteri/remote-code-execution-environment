@@ -62,6 +62,7 @@ run = (code, func) => {
       }
     });
   } else {
+    console.log(code);
     func({ ERROR: "Not allowed!" });
   }
 };
