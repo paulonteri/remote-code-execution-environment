@@ -8,12 +8,61 @@
     <meta name="description" content="Remote code execution web app" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <script defer src="/__/firebase/7.16.0/firebase-app.js"></script>
-    <script defer src="/__/firebase/init.js"></script>
+    <style>
+      .svgLoader {
+        animation: spin 0.5s linear infinite;
+        margin: auto;
+      }
+      .divLoader {
+        width: 98vw;
+        height: 98vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+
     <title>Code Executer</title>
   </head>
   <body style="background-color: #282a36;">
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <!--    ::APP::    -->
+    <div id="root">
+      <!-- Loader  -->
+      <div class="divLoader">
+        <svg class="svgLoader" viewBox="0 0 100 100" width="10em" height="10em">
+          <path
+            ng-attr-d="{{config.pathCmd}}"
+            ng-attr-fill="{{config.color}}"
+            stroke="none"
+            d="M10 50A40 40 0 0 0 90 50A40 42 0 0 1 10 50"
+            fill="azure"
+            transform="rotate(179.719 50 51)"
+          >
+            <animateTransform
+              attributeName="transform"
+              type="rotate"
+              calcMode="linear"
+              values="0 50 51;360 50 51"
+              keyTimes="0;1"
+              dur="5s"
+              begin="0s"
+              repeatCount="indefinite"
+            ></animateTransform>
+          </path>
+        </svg>
+      </div>
+    </div>
+    <script defer src="/__/firebase/7.16.0/firebase-app.js"></script>
+    <script defer src="/__/firebase/init.js"></script>
   </body>
 </html>

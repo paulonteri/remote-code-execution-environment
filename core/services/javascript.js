@@ -8,7 +8,7 @@ const timeOut = config.timeOut;
 
 const validate = (str) => {
   // prevent imports
-  words = ["require("];
+  words = ["require(", "exports.", "module.exports"];
   if (words.every((el) => str.toLowerCase().includes(el.toLowerCase()))) {
     return false;
   }
