@@ -2,7 +2,19 @@
 
 Remote code execution app built with JavaScript (React, NodeJS & Express).
 
-Try out the live app [here](https://runcode.paulonteri.com/#/).
+Try out the live system [here](https://runcode.paulonteri.com/#/).
+
+<img src="https://user-images.githubusercontent.com/45426293/87253451-02cdf280-c484-11ea-83fd-2c59000da265.png" width="90%"></img> 
+
+---
+
+Have you ever wondered how Remote Code Execution works? 
+
+This happens on sites like HackerRank & competitive programming websites. You write some code then it's executed on another computer(server). The results are then shown to you.
+
+I tried implementing that.
+
+Feel free to go through the code, fix bugs, add new features, e.t.c
 
 ---
 
