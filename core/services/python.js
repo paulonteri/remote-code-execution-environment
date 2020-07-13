@@ -23,8 +23,8 @@ const validate = (str) => {
 
 run = (code, func) => {
   if (validate(code)) {
+    var fileName = uuidv1();
     fs.writeFile(configPath + fileName + ".py", code, function (err) {
-      var fileName = uuidv1();
       if (err) {
         // handle error
         console.log("Error creating file: " + err);
