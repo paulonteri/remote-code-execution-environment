@@ -1,4 +1,5 @@
 const fs = require("fs");
+const Path = require("path");
 const exec = require("child_process").exec;
 const { v1: uuidv1 } = require("uuid");
 const config = require("./config");
@@ -15,7 +16,7 @@ const validate = (str) => {
   return true;
 };
 
-run = (code, func) => {
+const runCode = (code, func) => {
   if (validate(code)) {
     if (!code.match(RegExp(/\bclass\W+(?:\w+\W+){0}?Main\b/g))) {
       return func({ ERROR: 'Include a correct "Main" class!' });
@@ -29,8 +30,6 @@ run = (code, func) => {
     console.log(configPath);
     var path = folder + "/";
 
-    // https://nodejs.org/api/fs.html#fs_fs_mkdir_path_options_callbacks
-    // fs.mkdir(path, mode, callback)
     fs.mkdir(folder, 0777, function (err) {
       if (err) {
         func({ ERROR: "Server error" });
@@ -66,13 +65,13 @@ run = (code, func) => {
                 } else {
                   errorMessage = "Something went wrong. Please try again";
                 }
-                func({ ERROR: errorMessage });
+                func({ ERROR: errorMessage }, folder);
               } else {
                 if (env != "production") {
                   console.log("Successfully executed !");
                   console.log("Stdout: " + stdout);
                 }
-                func({ stdout: stdout });
+                func({ stdout: stdout }, folder);
               }
             });
           }
@@ -83,6 +82,22 @@ run = (code, func) => {
     console.log(code);
     func({ ERROR: "Not allowed!" });
   }
+};
+
+const run = (code, func) => {
+  runCode(code, function (data, dir = null) {
+    if (dir) {
+      if (fs.existsSync(dir)) {
+        fs.readdirSync(dir).forEach((file, index) => {
+          const curPath = Path.join(dir, file);
+          fs.unlinkSync(curPath);
+        });
+        fs.rmdirSync(dir);
+      }
+    }
+    // add more logic
+    func(data);
+  });
 };
 
 module.exports = { run: run };
