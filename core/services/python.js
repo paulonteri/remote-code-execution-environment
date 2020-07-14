@@ -21,10 +21,11 @@ const validate = (str) => {
   return true;
 };
 
-run = (code, func) => {
+const runCode = (code, func) => {
   if (validate(code)) {
     var fileName = uuidv1();
-    fs.writeFile(configPath + fileName + ".py", code, function (err) {
+    var actualFile = configPath + fileName + ".py";
+    fs.writeFile(actualFile, code, function (err) {
       if (err) {
         // handle error
         console.log("Error creating file: " + err);
@@ -50,13 +51,13 @@ run = (code, func) => {
             } else {
               errorMessage = "Something went wrong. Please try again";
             }
-            func({ ERROR: errorMessage });
+            func({ ERROR: errorMessage }, actualFile);
           } else {
             if (env != "production") {
               console.log("Successfully executed !");
               console.log("Stdout: " + stdout);
             }
-            func({ stdout: stdout });
+            func({ stdout: stdout }, actualFile);
           }
         });
       }
@@ -67,10 +68,19 @@ run = (code, func) => {
   }
 };
 
-// run('print("Hello World")    \nprint(1+2)\nwhile(True):   1+2', function (
-//   data
-// ) {
-//   console.log(data);
-// });
+const run = (code, func) => {
+  runCode(code, function (data, file = null) {
+    if (file) {
+      fs.unlink(file, (err) => {
+        if (err) {
+          console.error(err);
+        }
+        //file removed
+      });
+    }
+    // add more logic
+    func(data);
+  });
+};
 
 module.exports = { run: run };
