@@ -8,9 +8,19 @@ a {
   text-decoration: none;
 }
 
+.larger-screen-warn {
+  font-size: small !important;
+  margin-bottom: 15px !important;
+  display: none;
+}
+
 @media only screen and (max-width: 769px) {
   .hide-tablet {
     display: none !important;
+  }
+
+  .larger-screen-warn {
+    display: block;
   }
 }
 

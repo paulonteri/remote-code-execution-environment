@@ -27,7 +27,6 @@ const runCode = (code, func) => {
     var folderName = uuidv1();
     var filename = "Main.java";
     var folder = configPath + folderName;
-    console.log(configPath);
     var path = folder + "/";
 
     fs.mkdir(folder, 0777, function (err) {

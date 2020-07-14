@@ -4,6 +4,9 @@ import "./css/footer.css";
 const Footer = () => {
   return (
     <footer>
+      <p className="larger-screen-warn">
+        To access all features, view this system in a larger screen.
+      </p>
       <ul>
         <li>
           <a
