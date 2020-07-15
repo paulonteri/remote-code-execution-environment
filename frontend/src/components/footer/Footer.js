@@ -18,11 +18,7 @@ const Footer = () => {
           </a>
         </li>
         <li>
-          <a
-            href="https://github.com/paulonteri/remote-code-execution-environment"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="https://github.com/paulonteri/remote-code-execution-environment">
             View Code
           </a>
         </li>
@@ -35,11 +31,20 @@ const Footer = () => {
             Contact
           </a>
         </li>
+        <li>
+          <a
+            href="https://github.com/paulonteri/remote-code-execution-environment/blob/master/CONTRIBUTING.md"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Contribute
+          </a>
+        </li>
       </ul>
       <p>
         Built with love by{" "}
         <a
-          href="https://www.linkedin.com/in/paulonteri/"
+          href="https://paulonteri.com"
           target="_blank"
           rel="noopener noreferrer"
         >
