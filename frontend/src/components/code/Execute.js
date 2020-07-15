@@ -174,7 +174,9 @@ function Execute(props) {
         </div>
         <div className="header-buttons">
           <div className="dropdown">
-            <button id="langauge-btn">{language}</button>
+            <button id="langauge-btn">
+              {language === "csharp" ? "C#" : language}
+            </button>
             <ul className="dropdown-content">
               {languages
                 .filter((lang) => lang !== language)
@@ -185,7 +187,7 @@ function Execute(props) {
                       onLanguageChange(obj);
                     }}
                   >
-                    {obj}
+                    {obj === "csharp" ? "C#" : obj}
                   </li>
                 ))}
             </ul>
