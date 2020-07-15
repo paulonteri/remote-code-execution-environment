@@ -1,5 +1,6 @@
 .code-layout {
   height: var(--editer-height);
+  min-height: var(--editer-min-height);
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -66,7 +67,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-content: flex-start;
-    border-bottom: 15px solid var(--editer-gray);
+    border-bottom: 0 solid var(--editer-gray);
     border-top: 10px solid var(--editer-gray);
   }
 
@@ -94,5 +95,9 @@
     flex-basis: 100%;
     width: 100% !important;
     border-bottom: 0 solid var(--editer-gray);
+  }
+
+  footer {
+    border-top: 10px solid var(--editer-gray);
   }
 }

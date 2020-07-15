@@ -3,7 +3,8 @@
   --editer-light-gray: lightgray;
   --editer-black: #282a36;
   --editer-white: azure;
-  --editer-height: 550px;
+  --editer-min-height: 490px;
+  --editer-height: 74vh;
 }
 
 body {

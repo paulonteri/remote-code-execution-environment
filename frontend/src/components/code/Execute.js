@@ -15,7 +15,7 @@ import octoGray from "../../media/icon-octocat-gray.png";
 const languages = ["javascript", "java", "python"];
 const themes = ["dracula", "monokai"];
 const tabSizes = [2, 4, 8];
-const fontSizes = [12, 14, 15, 16, 18, 20, 22, 24, 28];
+const fontSizes = [12, 14, 16, 18, 20, 22, 24, 28, 30, 32];
 themes.forEach((theme) =>
   require(`ace-builds/src-min-noconflict/theme-${theme}`)
 );
