@@ -7,13 +7,14 @@ var frontend = process.env.FRONTEND || "https://runcode.paulonteri.com";
 const python = require("./services/python");
 const java = require("./services/java");
 const javascript = require("./services/javascript");
+const cSharp = require("./services/cSharp");
 
 app.use(formidable());
 
 const corsOptions = () => {
   if (process.env.NODE_ENV === "production") {
     return {
-      origin: "https://runcode.paulonteri.com",
+      origin: frontend,
       optionsSuccessStatus: 200,
       methods: "GET,POST",
     };
@@ -37,6 +38,10 @@ app.post("/code", (req, res) => {
   var text = req.fields.text;
   var language = req.fields.language;
 
+  if (!text || !(text.length > 1)) {
+    res.status(422).send("Write some code!");
+  }
+
   switch (language) {
     case "python":
       python.run(text, function (data) {
@@ -45,6 +50,11 @@ app.post("/code", (req, res) => {
       break;
     case "javascript":
       javascript.run(text, function (data) {
+        res.status(200).json(data);
+      });
+      break;
+    case "csharp":
+      cSharp.run(text, function (data) {
         res.status(200).json(data);
       });
       break;
