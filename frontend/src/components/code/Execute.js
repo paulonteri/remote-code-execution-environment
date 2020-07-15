@@ -196,7 +196,7 @@ function Execute(props) {
                 ))}
             </ul>
           </div>
-          <div className="dropdown hide-tablet">
+          <div className="dropdown hide-mobile">
             <button>Tab Size: {tabs}</button>
             <ul className="dropdown-content">
               {tabSizes
@@ -214,7 +214,7 @@ function Execute(props) {
             </ul>
           </div>
 
-          <div className="dropdown hide-mobile">
+          <div className="dropdown  hide-tablet">
             <button>Font Size: {fontSize}</button>
             <ul className="dropdown-content">
               {fontSizes
