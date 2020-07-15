@@ -3,6 +3,7 @@ on:
   push:
     paths: 
       - 'core/**'
+      - 'Dockerfile'
     branches: 
       - master
       - deploy
