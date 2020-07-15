@@ -6,13 +6,15 @@ const env = process.env.NODE_ENV;
 const configPath = config.codePath;
 const timeOut = config.timeOut;
 
+// This should never happen
 const validate = (str) => {
-  // prevent imports
   words = ["require(", "exports.", "module.exports"];
-  if (words.every((el) => str.toLowerCase().includes(el.toLowerCase()))) {
-    return false;
-  }
-  return true;
+  // prevent imports
+  var valid = !words.some((el) => {
+    return str.includes(el);
+  });
+
+  return valid;
 };
 
 const runCode = (code, func) => {
