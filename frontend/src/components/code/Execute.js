@@ -12,7 +12,7 @@ import playGrayIcon from "../../media/icon-play-light-gray.png";
 import octoGray from "../../media/icon-octocat-gray.png";
 // import octoBlack from "../../media/icon-octocat-black.png";
 
-const languages = ["javascript", "java", "python"];
+const languages = ["javascript", "java", "python", "csharp"];
 const themes = ["dracula", "monokai"];
 const tabSizes = [2, 4, 8];
 const fontSizes = [12, 14, 16, 18, 20, 22, 24, 28, 30, 32];
@@ -33,6 +33,15 @@ function Execute(props) {
 
   const pyDefault = `print("Truth can only be found in one place: the code.")`;
   const jsDefault = `console.log("The best way to get a project done faster is to start sooner.")`;
+  const csDefault = `using System;
+
+  public class HelloWorld
+  {
+      public static void Main(string[] args)
+      {
+          Console.WriteLine ("Code is like humor. When you have to explain it, it’s bad.");
+      }
+  }`;
 
   const [theme, setTheme] = useState("dracula");
   const [language, setLangauge] = useState("python");
@@ -111,6 +120,8 @@ function Execute(props) {
         setCodeText(javaDefault);
       } else if (lang === "javascript") {
         setCodeText(jsDefault);
+      } else if (lang === "csharp") {
+        setCodeText(csDefault);
       }
     }
     setLangauge(lang);
