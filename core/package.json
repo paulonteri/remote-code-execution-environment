@@ -5,6 +5,9 @@
   "private": true,
   "main": "Server.js",
   "scripts": {
+    "start": "nodemon Server.js",
+    "client": "cd ../frontend && yarn start",
+    "dev": "concurrently --kill-others-on-fail \"yarn start\" \"yarn run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,5 +25,9 @@
     "express": "^4.17.1",
     "express-formidable": "^1.2.0",
     "uuid": "^8.2.0"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.4"
   }
 }
