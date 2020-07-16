@@ -67,21 +67,15 @@ After installing node, this project will need yarn too, so just run the followin
 
     $ git clone https://github.com/paulonteri/remote-code-execution-environment.git
     $ cd remote-code-execution-environment
-    $ yarn install
+    $ cd core && yarn install && cd ../frontend && yarn install && cd ..
 
 ## Running the project
 
-### Frontend
-To run the react app, navigate to the frontend directory.
+To run both the frontend and backend run the `run` script
 
-    $ cd frontend
-    $ yarn start
-
-### Backend
-To run the react app, navigate to the frontend directory.
-
-    $ cd core
-    $ node Server.js
+```sh
+./run
+```
    
 ---
 
