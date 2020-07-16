@@ -67,7 +67,7 @@ After installing node, this project will need yarn too, so just run the followin
 
     $ git clone https://github.com/paulonteri/remote-code-execution-environment.git
     $ cd remote-code-execution-environment
-    $ cd core && yarn install && cd ../frontend && yarn install && cd..
+    $ cd core && yarn install && cd ../frontend && yarn install && cd ..
 
 ## Running the project
 
