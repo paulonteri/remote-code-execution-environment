@@ -12,7 +12,7 @@ import playGrayIcon from "../../media/icon-play-light-gray.png";
 import octoGray from "../../media/icon-octocat-gray.png";
 // import octoBlack from "../../media/icon-octocat-black.png";
 
-const languages = ["javascript", "java", "python", "csharp", "golang"];
+const languages = ["javascript", "java", "python", "csharp"];
 const themes = ["dracula", "monokai"];
 const tabSizes = [2, 4, 8];
 const fontSizes = [12, 14, 16, 18, 20, 22, 24, 28, 30, 32];
@@ -41,11 +41,6 @@ function Execute(props) {
       {
           Console.WriteLine ("Code is like humor. When you have to explain it, it’s bad.");
       }
-  }`;
-  const golangDefault = `package main
-  import "fmt"
-  func main() {
-	  fmt.Println("Go will make you love programming again.")
   }`;
 
   const [theme, setTheme] = useState("dracula");
@@ -127,8 +122,6 @@ function Execute(props) {
         setCodeText(jsDefault);
       } else if (lang === "csharp") {
         setCodeText(csDefault);
-      } else if (lang === 'golang') {
-        setCodeText(golangDefault);
       }
     }
     setLangauge(lang);
