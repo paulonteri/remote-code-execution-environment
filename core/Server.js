@@ -64,11 +64,11 @@ app.post("/code", (req, res) => {
         res.status(200).json(data);
       });
       break;
-     case "golang":
-			golang.run(text, function (data) {
-				res.status(200).json(data);
-			});
-			break;
+    case "golang":
+      golang.run(text, function (data) {
+        res.status(200).json(data);
+      });
+      break;
     default:
       res.status(422).send("Invalid programming language!");
   }
