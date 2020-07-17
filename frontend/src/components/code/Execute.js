@@ -119,7 +119,7 @@ function Execute(props) {
   };
 
   const onLanguageChange = (lang) => {
-    if ([pyDefault, jsDefault, javaDefault, csDefault].includes(codeText) || !codeText) {
+    if ([pyDefault, jsDefault, javaDefault, csDefault, golangDefault].includes(codeText) || !codeText) {
       if (lang === "python") {
         setCodeText(pyDefault);
       } else if (lang === "java") {
