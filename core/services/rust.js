@@ -1,6 +1,6 @@
 const fs = require("fs");
 const Path = require("path");
-const exec = require("child_process").exec;
+const { exec } = require("child_process");
 const { v1: uuidv1 } = require("uuid");
 const { codePath, timeOut } = require("./config");
 const env = process.env.NODE_ENV;
@@ -82,7 +82,7 @@ const runCode = (code, func) => {
                   console.log("Successfully executed !");
                   console.log("Stdout: " + stdout);
                 }
-                func({ stdout: stdout }, folder);
+                func({ stdout }, folder);
               }
             });
           }
