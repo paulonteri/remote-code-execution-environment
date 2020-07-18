@@ -9,6 +9,7 @@ const java = require("./services/java");
 const javascript = require("./services/javascript");
 const cSharp = require("./services/cSharp");
 const golang = require("./services/golang");
+const rust = require("./services/rust");
 
 
 app.use(formidable());
@@ -67,6 +68,11 @@ app.post("/code", (req, res) => {
       break;
     case "golang":
       golang.run(text, function (data) {
+        res.status(200).json(data);
+      });
+      break;
+    case "rust":
+      rust.run(text, function (data) {
         res.status(200).json(data);
       });
       break;
