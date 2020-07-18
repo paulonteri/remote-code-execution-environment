@@ -4,6 +4,7 @@ import AceEditor from "react-ace";
 import { AtomSpinner, SwappingSquaresSpinner } from "react-epic-spinners";
 import "ace-builds/src-min-noconflict/ext-language_tools";
 import { runCode } from "../../actions/Execute";
+import { csDefault, pyDefault, javaDefault, jsDefault, golangDefault, rustDefault } from "./defaults";
 import "./css/Execute.css";
 import "../header/css/Header.css";
 import playGrayIcon from "../../media/icon-play-light-gray.png";
@@ -25,30 +26,6 @@ languages.forEach((lang) => {
 });
 
 function Execute(props) {
-  const javaDefault = `public class Main {
-    public static void main(String[] args) {
-        System.out.println("FAST. GOOD. CHEAP. Choose any two.");
-    }
-  }`;
-
-  const pyDefault = `print("Truth can only be found in one place: the code.")`;
-  const jsDefault = `console.log("The best way to get a project done faster is to start sooner.")`;
-  const csDefault = `using System;
-
-  public class HelloWorld
-  {
-      public static void Main(string[] args)
-      {
-          Console.WriteLine ("Code is like humor. When you have to explain it, it’s bad.");
-      }
-  }`;
-
-  const golangDefault = `package main
-  import "fmt"
-  func main() {
-	  fmt.Println("Go will make you love programming again.")
-  }`;
-
   const [theme, setTheme] = useState("dracula");
   const [language, setLangauge] = useState("python");
   const [codeText, setCodeText] = useState(pyDefault);
@@ -119,7 +96,7 @@ function Execute(props) {
   };
 
   const onLanguageChange = (lang) => {
-    if ([pyDefault, jsDefault, javaDefault, csDefault, golangDefault].includes(codeText) || !codeText) {
+    if ([pyDefault, jsDefault, javaDefault, csDefault, golangDefault, rustDefault].includes(codeText) || !codeText) {
       if (lang === "python") {
         setCodeText(pyDefault);
       } else if (lang === "java") {
@@ -130,6 +107,8 @@ function Execute(props) {
         setCodeText(csDefault);
       } else if (lang === 'golang') {
         setCodeText(golangDefault);
+      } else if (lang === 'rust') {
+        setCodeText(rustDefault);
       }
     }
     setLangauge(lang);
