@@ -12,7 +12,7 @@ import playGrayIcon from "../../media/icon-play-light-gray.png";
 import octoGray from "../../media/icon-octocat-gray.png";
 // import octoBlack from "../../media/icon-octocat-black.png";
 
-const languages = ["javascript", "java", "python", "csharp", "golang"];
+const languages = ["javascript", "java", "python", "csharp", "golang", "rust"];
 const themes = ["dracula", "monokai"];
 const tabSizes = [2, 4, 8];
 const fontSizes = [12, 14, 16, 18, 20, 22, 24, 28, 30, 32];
