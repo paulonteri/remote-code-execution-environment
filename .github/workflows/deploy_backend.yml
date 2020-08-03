@@ -1,5 +1,7 @@
 name: Deploy Backend
 on:
+  schedule:
+    - cron: '* */23 * * *'
   push:
     paths: 
       - 'core/**'
