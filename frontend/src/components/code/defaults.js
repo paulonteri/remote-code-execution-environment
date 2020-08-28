@@ -16,13 +16,16 @@ export const csDefault = `using System;
       }
   }`;
 
-export const golangDefault = `package main
-  import "fmt"
-  func main() {
-	  fmt.Println("Go will make you love programming again.")
-  }`;
+export const golangDefault = `// You can edit this code!
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Go will make you love programming again.")
+}
+`;
 
 export const rustDefault = `fn main() {
     println!("Hello world");
-}
-`;
+}`;
