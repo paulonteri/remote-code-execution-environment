@@ -48,7 +48,7 @@ const Footer = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Paul Onteri
+          Paul Onteri.
         </a>
       </p>
     </footer>
