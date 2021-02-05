@@ -9,7 +9,7 @@ const timeOut = config.timeOut;
 // Hacky validation
 const validate = (str) => {
   reg1 = RegExp(/\bimport\W+(?:\w+\W+){0,}(?:os|subprocess|importlib)\b/g);
-  words = ["open("];
+  words = ["open(","os"];
 
   if (str.match(reg1)) {
     return false;
