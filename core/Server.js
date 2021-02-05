@@ -44,7 +44,7 @@ app.post("/code", (req, res) => {
   if (!text || !(text.length > 1)) {
     res.status(422).send("Write some code!");
   }
-  console.log(text)
+  console.log(language, text)
 
   switch (language) {
     case "python":
