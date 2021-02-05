@@ -59,7 +59,7 @@ After installing node, this project will need yarn too, so just run the followin
 
 ## Running the project
 
-To run both the frontend and backend run the `run` script
+To run both the frontend and backend run the `run` script.
 
 ```sh
 ./run
