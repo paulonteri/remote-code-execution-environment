@@ -10,11 +10,13 @@ const timeOut = config.timeOut;
 const validate = (str) => {
   words = ["File.", "Directory.", "Environment", "DirectoryInfo", "FileInfo"];
   // prevent imports
-  var valid = !words.some((el) => {
-    return str.includes(el);
-  });
-
-  return valid;
+  const lowerString = str.toLowerCase();
+  for (const negativeWord of words) {
+    if (lowerString.includes(negativeWord.toLowerCase())) {
+      return false;
+    }
+  }
+  return true;
 };
 
 const runCode = (code, func) => {
@@ -81,7 +83,10 @@ const runCode = (code, func) => {
     });
   } else {
     console.log(code);
-    func({ ERROR: "Not allowed!" });
+    func({
+      ERROR:
+        "Not allowed! Please check that you are not using some keywords such as 'os' ",
+    });
   }
 };
 

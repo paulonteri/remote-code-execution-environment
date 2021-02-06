@@ -10,8 +10,12 @@ const timeOut = config.timeOut;
 const validate = (str) => {
   // prevent handling files
   words = ["java.io.File"];
-  if (words.every((el) => str.toLowerCase().includes(el.toLowerCase()))) {
-    return false;
+
+  const lowerString = str.toLowerCase();
+  for (const negativeWord of words) {
+    if (lowerString.includes(negativeWord.toLowerCase())) {
+      return false;
+    }
   }
   return true;
 };
@@ -40,46 +44,51 @@ const runCode = (code, func) => {
           } else {
             var command =
               "cd " + folder + " && " + " javac Main.java" + "&& java Main";
-            exec(command, { timeout: timeOut }, function (
-              error,
-              stdout,
-              stderr
-            ) {
-              if (error) {
-                if (env != "production") {
-                  console.log("Error: " + error);
-                  console.log("Stderr: " + stderr);
-                }
+            exec(
+              command,
+              { timeout: timeOut },
+              function (error, stdout, stderr) {
+                if (error) {
+                  if (env != "production") {
+                    console.log("Error: " + error);
+                    console.log("Stderr: " + stderr);
+                  }
 
-                if (
-                  error.toString().includes("ERR_CHILD_PROCESS_STDIO_MAXBUFFER")
-                ) {
-                  errorMessage =
-                    "Process terminated. 'maxBuffer' exceeded. This normally happens during an infinite loop.";
-                } else if (error.signal === "SIGTERM") {
-                  errorMessage =
-                    "Process terminated. Please check your code and try again.";
-                } else if (stderr) {
-                  errorMessage = stderr;
+                  if (
+                    error
+                      .toString()
+                      .includes("ERR_CHILD_PROCESS_STDIO_MAXBUFFER")
+                  ) {
+                    errorMessage =
+                      "Process terminated. 'maxBuffer' exceeded. This normally happens during an infinite loop.";
+                  } else if (error.signal === "SIGTERM") {
+                    errorMessage =
+                      "Process terminated. Please check your code and try again.";
+                  } else if (stderr) {
+                    errorMessage = stderr;
+                  } else {
+                    errorMessage = "Something went wrong. Please try again";
+                  }
+                  func({ ERROR: errorMessage }, folder);
                 } else {
-                  errorMessage = "Something went wrong. Please try again";
+                  if (env != "production") {
+                    console.log("Successfully executed !");
+                    console.log("Stdout: " + stdout);
+                  }
+                  func({ stdout: stdout }, folder);
                 }
-                func({ ERROR: errorMessage }, folder);
-              } else {
-                if (env != "production") {
-                  console.log("Successfully executed !");
-                  console.log("Stdout: " + stdout);
-                }
-                func({ stdout: stdout }, folder);
               }
-            });
+            );
           }
         });
       }
     });
   } else {
     console.log(code);
-    func({ ERROR: "Not allowed!" });
+    func({
+      ERROR:
+        "Not allowed! Please check that you are not using some keywords such as 'os' ",
+    });
   }
 };
 
