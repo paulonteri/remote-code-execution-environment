@@ -10,13 +10,11 @@ const timeOut = config.timeOut;
 const validate = (str) => {
   words = ["require(", "exports.", "module.exports"];
   // prevent imports
-  const lowerString = str.toLowerCase();
-  for (const negativeWord of words) {
-    if (lowerString.includes(negativeWord.toLowerCase())) {
-      return false;
-    }
-  }
-  return true;
+  var valid = !words.some((el) => {
+    return str.includes(el);
+  });
+
+  return valid;
 };
 
 const runCode = (code, func) => {
@@ -63,10 +61,7 @@ const runCode = (code, func) => {
     });
   } else {
     console.log(code);
-    func({
-      ERROR:
-        "Not allowed! Please check that you are not using some keywords such as 'os' ",
-    });
+    func({ ERROR: "Not allowed!" });
   }
 };
 

@@ -9,16 +9,13 @@ const timeOut = config.timeOut;
 // Hacky validation
 const validate = (str) => {
   reg1 = RegExp(/\bimport\W+(?:\w+\W+){0,}(?:os|subprocess|importlib)\b/g);
-  words = ["open(", "os"]; // hardcoding 😭😭😭
-
-  const lowerString = str.toLowerCase();
-  for (const negativeWord of words) {
-    if (lowerString.includes(negativeWord.toLowerCase())) {
-      return false;
-    }
-  }
+  words = ["open(","os"];
 
   if (str.match(reg1)) {
+    return false;
+  } else if (
+    words.every((el) => str.toLowerCase().includes(el.toLowerCase()))
+  ) {
     return false;
   }
   return true;
@@ -67,10 +64,7 @@ const runCode = (code, func) => {
     });
   } else {
     console.log(code);
-    func({
-      ERROR:
-        "Not allowed! Please check that you are not using some keywords such as 'os' ",
-    });
+    func({ ERROR: "Not allowed!" });
   }
 };
 
