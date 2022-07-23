@@ -5,7 +5,9 @@ export const javaDefault = `public class Main {
   }`;
 
 export const pyDefault = `print("Truth can only be found in one place: the code.")`;
+
 export const jsDefault = `console.log("The best way to get a project done faster is to start sooner.")`;
+
 export const csDefault = `using System;
 
   public class HelloWorld
@@ -27,5 +29,5 @@ func main() {
 `;
 
 export const rustDefault = `fn main() {
-    println!("Hello world");
+    println!("Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.");
 }`;
