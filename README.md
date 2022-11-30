@@ -4,6 +4,8 @@ Remote code execution app built with JavaScript (React, NodeJS & Express).
 
 Try out the live system [here](https://runcode.paulonteri.com/#/).
 
+![runcode](https://user-images.githubusercontent.com/45426293/204786110-49545e84-1786-4778-922c-8af15da207d5.gif)
+
 <img src="https://user-images.githubusercontent.com/45426293/87253451-02cdf280-c484-11ea-83fd-2c59000da265.png" width="90%"></img> 
 
 ---
